@@ -1,0 +1,17 @@
+---
+- name: "COPIAR, EJECUTAR Y ELIMINAR UN SCRIPT LOCAL EN UN NODO ADMINISTRADO"
+  hosts: all
+  tasks:
+    - name: "Copiar el script al nodo administrado"
+      copy:
+        src: script.sh
+        dest: /ruta/remota/script.sh
+        mode: "0755"
+
+    - name: "Ejecutar el script en el nodo administrado"
+      command: /ruta/remota/script.sh
+
+    - name: "Eliminar el script del nodo administrado"
+      file:
+        path: /ruta/remota/script.sh
+        state: absent
