@@ -4,7 +4,7 @@
   tasks:
     - name: "Copiar el script al nodo administrado"
       copy:
-        src: script.sh
+        src: /ruta/local/script.sh
         dest: /ruta/remota/script.sh
         mode: "0755"
 
