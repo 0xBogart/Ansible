@@ -1,15 +1,22 @@
 ---
-- name: "REALIZAR BACKUP DE ARCHIVO REMOTO Y SUSTITUIR EL ORIGINAL POR ARCHIVO LOCAL"
+- name: "REALIZAR BACKUP DE ARCHIVO REMOTO"
   hosts: all
   tasks:
-    - name: "Backup con TIMESTAMP y Sustitución de mi_archivo.txt"
+    - name: "Backup con TIMESTAMP y Sustitución por mi_archivo.txt LOCAL"
       copy:
         src: /ruta/local/mi_archivo.txt
         dest: /ruta/remota/mi_archivo.txt # El backup tendrá un TIMESTAMP: mi_archivo.txt.5032.2023-11-05@03:19:52~
         backup: yes
 
-    - name: "Backup con FECHA/HORA y Sustitución de mi_archivo.txt"
+    - name: "Backup con FECHA/HORA y Sustitución por mi_archivo.txt LOCAL"
       copy:
         src: /ruta/local/mi_archivo.txt
         dest: /ruta/remota/mi_archivo.txt_{{ ansible_date_time.date }}_{{ ansible_date_time.time }} # BACKUP: mi_archivo.txt_2023-11-05_04:02:22
+        backup: yes
+
+    - name: "Backup de un archivo REMOTO usando remote_src"
+      copy:
+        src: /ruta/remoto/archivo_remoto.txt
+        dest: /ruta/remota/archivo_remoto.txt_{{ ansible_date_time.date }}_{{ ansible_date_time.time }} # BACKUP: mi_archivo.txt_2023-11-05_04:02:22
+        remote_src: yes
         backup: yes
