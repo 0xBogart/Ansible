@@ -1,0 +1,26 @@
+---
+- name: "AÑADIR TEXTO A UN ARCHIVO"
+  hosts: all
+  tasks:
+    - name: "Añade texto a un archivo vacío. Si no está vacío el archivo se sobreescribirá."
+      copy:
+        content: |
+          # Línea 1: Primera línea añadida al archivo
+          # Línea 2: Segunda línea añadida al archivo
+        dest: /home/user/Archivo_a_Editar.txt
+
+    - name: "Añadir texto al INICIO del Archivo"
+      lineinfile:
+        path: /home/user/Archivo_a_Editar.txt
+        line: |
+          # Línea 1: Primera línea añadida al INICIO del archivo
+          # Línea 2: Segunda línea añadida al INICIO del archivo
+        insertbefore: BOF
+
+    - name: "Añadir texto al FINAL del Archivo"
+      lineinfile:
+        path: /home/user/Archivo_a_Editar.txt
+        line: |
+          # Línea 1: Primera línea añadida al FINAL del archivo
+          # Línea 2: Segunda línea añadida al FINAL del archivo
+        insertafter: EOF
